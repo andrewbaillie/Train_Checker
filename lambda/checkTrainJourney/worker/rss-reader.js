@@ -45,7 +45,6 @@ loadData = ( from , to , callback ) => {
 
     // When finished callback with the retreived data
     feedparser.on( 'end' , () => {
-        console.log( items );
         callback( null , items );
     });
 
