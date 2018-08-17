@@ -1,0 +1,129 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "train checker",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "Cancel"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "Help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "Exit",
+                        "Quit",
+                        "Stop"
+                    ]
+                },
+                {
+                    "name": "journeyIntent",
+                    "slots": [
+                        {
+                            "name": "startLocation",
+                            "type": "AMAZON.GB_CITY",
+                            "samples": [
+                                "at {startLocation}",
+                                "from {startLocation}"
+                            ]
+                        },
+                        {
+                            "name": "endLocation",
+                            "type": "AMAZON.GB_CITY",
+                            "samples": [
+                                "getting off at {endLocation}",
+                                "ending at {endLocation}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "from {startLocation}",
+                        "from {startLocation} to {endLocation}",
+                        "I want to go from {startLocation} to {endLocation}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "journeyIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1029521321299"
+                    },
+                    "slots": [
+                        {
+                            "name": "startLocation",
+                            "type": "AMAZON.GB_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1012059688119.232350344250"
+                            }
+                        },
+                        {
+                            "name": "endLocation",
+                            "type": "AMAZON.GB_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1012059688119.505489702134"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1012059688119.232350344250",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "where would you like to start from"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1012059688119.505489702134",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "where will your journey end"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1228367070240",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you sure?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1029521321299",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Are you sure?"
+                    }
+                ]
+            }
+        ]
+    }
+}

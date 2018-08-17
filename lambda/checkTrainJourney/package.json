@@ -1,0 +1,11 @@
+{
+  "name": "alexa-skill-kit-sdk-factskill",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "alexa-sdk": "^1.0.25",
+    "fast-csv": "^2.4.1",
+    "feedparser": "^2.2.9",
+    "request": "^2.88.0"
+  }
+}
