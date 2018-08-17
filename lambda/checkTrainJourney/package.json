@@ -1,9 +1,10 @@
 {
-  "name": "alexa-skill-kit-sdk-factskill",
+  "name": "TrainChecker",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
     "alexa-sdk": "^1.0.25",
+    "chai": "^4.1.2",
     "fast-csv": "^2.4.1",
     "feedparser": "^2.2.9",
     "request": "^2.88.0"
