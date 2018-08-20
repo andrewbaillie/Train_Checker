@@ -23,7 +23,7 @@ let lookupStation = ( input ) => {
 
     return found;
 
-}
+};
 
 let loadStations = ( callback ) => {
 
@@ -39,6 +39,6 @@ let loadStations = ( callback ) => {
         callback( null , 'done' );
     });
 
-}
+};
 
 module.exports = { loadStations , lookupStation };

@@ -3,7 +3,7 @@ const request     = require( 'request' );
 
 loadData = ( from , to , callback ) => {
 
-    let req = request('http://rss.journeycheck.com/scotrail/route?action=search&from=' + from + '&to=' + to + '&period=today&formTubeUpdateLocation=&formTubeUpdatePeriod=&savedRoute=')
+    let req = request('http://rss.journeycheck.com/scotrail/route?action=search&from=' + from + '&to=' + to + '&period=today&formTubeUpdateLocation=&formTubeUpdatePeriod=&savedRoute=');
     let feedparser  = new FeedParser( { addmeta: false } );
     let items = [];
 
