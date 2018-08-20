@@ -22,6 +22,7 @@
                 {
                     "name": "AMAZON.StopIntent",
                     "samples": [
+                        "goodbye",
                         "Exit",
                         "Quit",
                         "Stop"
@@ -32,25 +33,25 @@
                     "slots": [
                         {
                             "name": "startLocation",
-                            "type": "AMAZON.GB_CITY",
-                            "samples": [
-                                "at {startLocation}",
-                                "from {startLocation}"
-                            ]
+                            "type": "AMAZON.GB_CITY"
                         },
                         {
                             "name": "endLocation",
-                            "type": "AMAZON.GB_CITY",
-                            "samples": [
-                                "getting off at {endLocation}",
-                                "ending at {endLocation}"
-                            ]
+                            "type": "AMAZON.GB_CITY"
                         }
                     ],
                     "samples": [
                         "from {startLocation}",
                         "from {startLocation} to {endLocation}",
                         "I want to go from {startLocation} to {endLocation}"
+                    ]
+                },
+                {
+                    "name": "restartOrQuitIntent",
+                    "slots": [],
+                    "samples": [
+                        "start again",
+                        "restart"
                     ]
                 }
             ],
@@ -69,19 +70,15 @@
                             "name": "startLocation",
                             "type": "AMAZON.GB_CITY",
                             "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.1012059688119.232350344250"
-                            }
+                            "elicitationRequired": false,
+                            "prompts": {}
                         },
                         {
                             "name": "endLocation",
                             "type": "AMAZON.GB_CITY",
                             "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.1012059688119.505489702134"
-                            }
+                            "elicitationRequired": false,
+                            "prompts": {}
                         }
                     ]
                 }

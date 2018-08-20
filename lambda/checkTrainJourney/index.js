@@ -9,7 +9,7 @@ const RssReader     = require( './worker/rss-reader.js' );
 const APP_ID        = 'amzn1.ask.skill.45dbaa2a-c19c-40b6-9fd9-34dbd1eb090b';
 const HELP_MESSAGE  = 'Help Message Here';
 const HELP_REPROMPT = 'What can I help you with?';
-const STOP_MESSAGE  = 'Hmm Goodbye!';
+const STOP_MESSAGE  = 'Ok Goodbye!';
 
 const handlers = {
     'LaunchRequest': function () {
@@ -106,12 +106,17 @@ const handlers = {
 
             } else {
                 // Deal with somebody saying No to :confirmIntent
-                this.response.speak( "Oh that's a shame" );
+                this.response.speak( "I must've misheard you, would you like to restart or exit?" ).listen( "Would you like to restart or exit?" );
                 this.emit(':responseReady');
             }
 
         }
 
+    },
+    'restartOrQuitIntent': function() {
+        this.attributes = {};
+        this.response.speak( "Ok lets start again, where would you like to travel from?" ).listen("Where would you like to travel from?");
+        this.emit(':responseReady');
     },
     'AMAZON.HelpIntent': function () {
         const speechOutput = HELP_MESSAGE;
