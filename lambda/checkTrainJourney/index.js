@@ -70,36 +70,43 @@ const handlers = {
                     startStation = Stations.lookupStation( this.attributes.startLocation );
                     endStation = Stations.lookupStation( this.attributes.endLocation );
 
-                    let myPromiseRss = new Promise( (resolve, reject) => {
-                        RssReader.loadData( startStation , endStation , function( err , items ) {
-                            if ( err ) {
-                                reject( err );
-                            }
-                            resolve( items );
-                        });
-                    });
+                    if ( startStation === '' || endStation === '' ) {
+                        this.response.speak( "Sorry I wasn't able to identify those stations, would you like to restart or exit?" ).listen( "Would you like to restart or exit?" );
+                        this.emit(':responseReady');
+                    } else {
 
-                    myPromiseRss.then( (resolvedValue) => {
-
-                        let output = '';
-
-                        resolvedValue.forEach( function( value ) {
-                            output += '<p>' + value.description + '</p>';
+                        let myPromiseRss = new Promise( (resolve, reject) => {
+                            RssReader.loadData( startStation , endStation , function( err , items ) {
+                                if ( err ) {
+                                    reject( err );
+                                }
+                                resolve( items );
+                            });
                         });
 
-                        this.response.speak( "Ok, I'm checking " + startStation + " to " + endStation + " and found " + output );
-                        this.emit(':responseReady');
+                        myPromiseRss.then( (resolvedValue) => {
 
-                    }, (error) => {
-                        // RSS lookup failed for some reason, deal with it
-                        this.response.speak( "double darn it! " + error );
-                        this.emit(':responseReady');
-                    });
+                            let output = '';
+
+                            resolvedValue.forEach( function( value ) {
+                                output += '<p>' + value.description + '</p>';
+                            });
+
+                            this.response.speak( "Ok, I'm checking " + startStation + " to " + endStation + " and found " + output );
+                            this.emit(':responseReady');
+
+                        }, (error) => {
+                            // RSS lookup failed for some reason, deal with it
+                            this.response.speak( "Sorry I wasn't able to find any route information, would you like to restart or exit?" ).listen( "Would you like to restart or exit?" );
+                            this.emit(':responseReady');
+                        });
+
+                    }
 
                 }, (error) => {
 
                     // Deal with errors related to loading the stations.csv file
-                    this.response.speak( "darn it! " + error );
+                    this.response.speak( "Sorry I wasn't able to find any route information, would you like to restart or exit?" ).listen( "Would you like to restart or exit?" );
                     this.emit(':responseReady');
 
                 });
