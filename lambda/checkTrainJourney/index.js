@@ -11,11 +11,18 @@ const HELP_MESSAGE  = 'Help Message Here';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE  = 'Ok Goodbye!';
 
+const optionalGreetings = [
+    'Welcome to ',
+    'Hello and welcome to ',
+    'Hey this is '
+];
+
 const handlers = {
     'LaunchRequest': function () {
+        let random = Math.floor( Math.random() * 3 );
         this.attributes.startLocation = null;
         this.attributes.endLocation = null;
-        this.response.speak("Welcome to Train Checker, where are you travelling today?").listen();
+        this.response.speak( optionalGreetings[random] + " Train Checker, where are you travelling today?").listen();
         this.emit(':responseReady');
     },
     'journeyIntent': function() {
