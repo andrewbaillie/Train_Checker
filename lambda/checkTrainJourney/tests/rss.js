@@ -47,7 +47,6 @@ describe('rss-reader', function () {
             if ( err ) {
                 done( new Error( err ) );
             } else {
-                console.log( items );
                 chai.expect( items ).to.be.a('array');
                 done();
             }
