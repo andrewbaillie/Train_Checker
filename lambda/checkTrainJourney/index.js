@@ -22,7 +22,7 @@ const handlers = {
         let random = Math.floor( Math.random() * 3 );
         this.attributes.startLocation = null;
         this.attributes.endLocation = null;
-        this.response.speak( optionalGreetings[random] + " Train Checker, where are you travelling today?").listen();
+        this.response.speak( "<audio src='https://s3.amazonaws.com/ask-soundlibrary/transportation/amzn_sfx_subway_leaving_01.mp3'/> " + optionalGreetings[random] + " Train Checker, where are you travelling today?").listen();
         this.emit(':responseReady');
     },
     'journeyIntent': function() {
